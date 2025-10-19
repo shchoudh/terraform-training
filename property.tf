@@ -20,3 +20,22 @@ resource "akamai_property" "my_new_property" {
     name = "ScriptClubTerraform"
     product_id = "prd_Fresca" 
 }
+
+
+#for assignment 4
+data "akamai_property_rules_builder" "my_default_rule" {
+  rules_v2023_01_05 {
+    name      = "default"
+    behavior {
+      origin {
+        origin_type = "CUSTOMER"
+        hostname = var.ab_test == "A" ? "origin-a.example.com" : "origin-b.example.com"
+      }
+    }
+  }
+}
+
+#For assignment 4
+output "origin_host"{
+    value = data.akamai_property_rules_builder.my_default_rule.rules_v2023_01_05[0].behavior[0].origin[0].hostname
+}

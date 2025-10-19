@@ -9,3 +9,12 @@ variable "config_section" {
     type = string
     default = "terraform-sc"
 }
+
+
+#For assignment 4
+
+variable "ab_test" {
+    description = "test variable"
+    type = string
+    default = "A"
+}
