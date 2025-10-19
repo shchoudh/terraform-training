@@ -18,3 +18,9 @@ variable "ab_test" {
     type = string
     default = "A"
 }
+
+#For assignment 4.2 - loops
+
+variable "apps" {
+  default = [ "www", "api", "blog", "shop", "cdn"]
+}
