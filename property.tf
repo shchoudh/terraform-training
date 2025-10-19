@@ -19,6 +19,17 @@ resource "akamai_property" "my_new_property" {
     group_id = tonumber(replace(data.akamai_group.my_group.id,"grp_",""))
     name = "ScriptClubTerraform"
     product_id = "prd_Fresca" 
+
+    #For assignment 4.3 - dynamic block
+
+    dynamic "hostnames" {
+      for_each = local.app_hostnames
+      content {
+        cname_from = hostnames.value
+        cname_to = "www.example.com.edgesuite.net"
+        cert_provisioning_type = "DEFAULT"
+      }
+    }
 }
 
 
